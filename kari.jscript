@@ -1,0 +1,44 @@
+function mostrarSeccion(id) {
+    document.querySelectorAll('.seccion').forEach(sec => {
+        sec.classList.remove('activa');
+        sec.classList.add('oculto');
+    });
+    const activa = document.getElementById(id);
+    if (activa) {
+        activa.classList.remove('oculto');
+        setTimeout(() => activa.classList.add('activa'), 10); // Para activar el fade-in
+    }
+}
+
+// Mostrar solo la sección principal al cargar
+document.addEventListener("DOMContentLoaded", function() {
+    mostrarSeccion('principal');
+});
+
+// Lightbox para imágenes
+const lightbox = document.createElement('div');
+lightbox.classList.add('lightbox');
+document.body.appendChild(lightbox);
+
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.innerHTML = `<img src="${img.src}" alt="">`;
+        lightbox.style.display = 'flex';
+    });
+});
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+
+// Botón sorpresa con frases aleatorias
+const frases = [
+    "Eres mi lugar favorito.",
+    "No sé cómo lo haces, pero siempre me haces sonreír.",
+    "Eres la mejor parte de mis días.",
+    "Contigo todo es más bonito."
+];
+function fraseAleatoria() {
+    alert(frases[Math.floor(Math.random() * frases.length)]);
+}
+
+
